@@ -1,0 +1,476 @@
+
+
+        :root {
+            --IVIS__icon-color-success: #07bc0c;
+            --IVIS__icon-color-success-50: hsla(0, 0%, 100%, .7);
+            --IVIS__icon-color-error: #e74c3c;
+            --IVIS__icon-color-error-50: hsla(0, 0%, 100%, .7);
+            --IVIS__icon-color-warning: #f1c40f;
+            --IVIS__icon-color-warning-50: hsla(0, 0%, 100%, .7);
+            --IVIS__icon-color-info: #3498db;
+            --IVIS__icon-color-info-50: hsla(0, 0%, 100%, .7);
+        }
+
+        .IVIS__toast-container {
+            position: fixed;
+            padding: 4px;
+            width: var(--toastify-toast-width);
+            box-sizing: border-box;
+            color: #fff;
+            z-index: 90000000;
+            max-width: 400px;
+        }
+
+        .IVIS__toast-container.top-right {
+            top: 1em;
+            right: 1em;
+        }
+
+        .IVIS__toast-container.bottom-right {
+            bottom: 1em;
+            right: 1em;
+        }
+
+        .IVIS__toast-container.top-left {
+            top: 1em;
+            left: 1em;
+        }
+
+        .IVIS__toast-container.bottom-left {
+            bottom: 1em;
+            left: 1em;
+        }
+
+        .IVIS__toast-container.top-center {
+            top: 1em;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .IVIS__toast-container.bottom-center {
+            bottom: 1em;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .IVIS__toast {
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            padding: 15px 17px;
+            border-radius: 4px;
+            box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1), 0 2px 15px 0 rgba(0, 0, 0, .05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-height: 800px;
+            overflow: hidden;
+            cursor: pointer;
+            direction: ltr;
+            color: #757575;
+            min-height: 64px;
+            width: 315px;
+            position: relative;
+            font-size: 16px;
+            transition: 0.4s;
+            transition: transform 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+        }
+
+        .IVIS__toast-container.top-right .IVIS__toast.bounce,
+        .IVIS__toast-container.bottom-right .IVIS__toast.bounce {
+            animation: ivisbouncetopright 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+
+        @keyframes ivisbouncetopright {
+            0% {
+                transform: translateX(1000px);
+            }
+
+            40% {
+                transform: translateX(-30px);
+            }
+
+            65% {
+                transform: translateX(20px);
+            }
+
+            85% {
+                transform: translateX(-10px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .IVIS__toast-container.top-left .IVIS__toast.bounce,
+        .IVIS__toast-container.bottom-left .IVIS__toast.bounce {
+            animation: ivisbouncetopleft 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes ivisbouncetopleft {
+            0% {
+                transform: translateX(-1000px);
+            }
+
+            40% {
+                transform: translateX(30px);
+            }
+
+            65% {
+                transform: translateX(-20px);
+            }
+
+            85% {
+                transform: translateX(10px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .IVIS__toast-container.top-center .IVIS__toast.bounce {
+            animation: ivisbouncetopcenter 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes ivisbouncetopcenter {
+            0% {
+                transform: translateY(-1000px);
+            }
+
+            40% {
+                transform: translateY(30px);
+            }
+
+            65% {
+                transform: translateY(-20px);
+            }
+
+            85% {
+                transform: translateY(10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .IVIS__toast-container.bottom-center .IVIS__toast.bounce {
+            animation: ivisbouncebottomcenter 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes ivisbouncebottomcenter {
+            0% {
+                transform: translateY(1000px);
+            }
+
+            40% {
+                transform: translateY(-30px);
+            }
+
+            65% {
+                transform: translateY(20px);
+            }
+
+            85% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .IVIS__toast.IVIS__toast.dark {
+            background-color: #121212;
+        }
+
+        .IVIS__toast.success.colored {
+            background-color: var(--IVIS__icon-color-success);
+        }
+
+        .IVIS__toast.error.colored {
+            background-color: var(--IVIS__icon-color-error);
+        }
+
+        .IVIS__toast.warning.colored {
+            background-color: var(--IVIS__icon-color-warning);
+        }
+
+        .IVIS__toast.info.colored {
+            background-color: var(--IVIS__icon-color-info);
+        }
+
+        .IVIS__toast .IVIS__toast-text {
+            user-select: none;
+        }
+
+        .IVIS__toast.colored .IVIS__toast-text,
+        .IVIS__toast.dark .IVIS__toast-text
+         {
+            color: rgb(255, 255, 255);
+
+        }
+        .IVIS__toast.pending .IVIS__toast-text{
+            color: #757575;
+        }
+        .IVIS__toast.dark.pending .IVIS__toast-text{
+            color: rgb(255, 255, 255);
+        }
+
+        .IVIS__toast.success:not(.light) .IVIS__toast-icon svg,
+        .IVIS__toast.error:not(.light) .IVIS__toast-icon svg,
+        .IVIS__toast.info:not(.light) .IVIS__toast-icon svg,
+        .IVIS__toast.warning:not(.light) .IVIS__toast-icon svg {
+            fill: white;
+        }
+
+        .IVIS__toast.success:not(.light):not(.dark) .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-success-50) ;
+        }
+
+        .IVIS__toast.error:not(.light):not(.dark) .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-error-50);
+        }
+
+        .IVIS__toast.warning:not(.light):not(.dark) .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-warning-50);
+        }
+
+        .IVIS__toast.info:not(.light):not(.dark) .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-info-50);
+        }
+
+
+        .IVIS__toast.light .IVIS__toast-text {
+            color: #757575;
+            font-size: 16px;
+        }
+
+        .IVIS__toast.light,
+        .IVIS__toast.default
+         {
+            background-color: white;
+        }
+
+        .IVIS__toast .IVIS__toast-icon {
+            min-width: 20px;
+			max-width: 20px;
+            display: flex;
+        }
+
+        .IVIS__toast.success:not(.colored) .IVIS__toast-icon svg {
+            fill: var(--IVIS__icon-color-success);
+        }
+
+        .IVIS__toast.error:not(.colored) .IVIS__toast-icon svg {
+            fill: var(--IVIS__icon-color-error);
+        }
+
+        .IVIS__toast.warning:not(.colored) .IVIS__toast-icon svg {
+            fill: var(--IVIS__icon-color-warning);
+        }
+
+        .IVIS__toast.info:not(.colored) .IVIS__toast-icon svg {
+            fill: var(--IVIS__icon-color-info);
+        }
+
+        .IVIS__toast .IVIS__toast--close--button {
+            position: absolute;
+            background: transparent;
+            outline: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            opacity: .7;
+            transition: .3s ease;
+            -ms-flex-item-align: start;
+            align-self: flex-start;
+            right: 10px;
+            top: 10px;
+        }
+
+
+        .IVIS__toast:not(.light):not(.pending) .IVIS__toast--close--button svg {
+            fill: #e4e4e4;
+            transition: 0.2s;
+        }
+
+        .IVIS__toast .IVIS__toast--close--button svg {
+            fill: #777777;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .IVIS__toast .IVIS__toast--close--button svg:hover {
+            fill: #000;
+        }
+
+        .IVIS__toast:not(.light):not(.pending) .IVIS__toast--close--button svg:hover {
+            fill: #fff;
+        }
+
+        .IVIS__toast-container .IVIS__toast .IVIS__toast--progressbar {
+            height: 5px;
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+
+
+        @keyframes progressbar {
+            0% {
+                width: 100%;
+            }
+
+            100% {
+                width: 0%;
+            }
+
+        }
+
+        .IVIS__toast-container.top-right .IVIS__toast.remove,
+        .IVIS__toast-container.bottom-right .IVIS__toast.remove {
+            animation: removetopright 0.5s linear forwards;
+        }
+
+        @keyframes removetopright {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translateX(1000px);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .IVIS__toast-container.top-left .IVIS__toast.remove,
+        .IVIS__toast-container.bottom-left .IVIS__toast.remove {
+            animation: removetopleft 0.5s linear forwards;
+        }
+
+        @keyframes removetopleft {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translateX(-1000px);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .IVIS__toast-container.top-center .IVIS__toast.remove {
+            animation: removetopcenter 0.5s linear forwards;
+        }
+
+        @keyframes removetopcenter {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translateY(-1000px);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .IVIS__toast-container.bottom-center .IVIS__toast.remove {
+            animation: removebottomcenter 0.5s linear forwards;
+        }
+
+        @keyframes removebottomcenter {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translateY(1000px);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+       .IVIS__toast:not(.dark).default .IVIS__toast--progressbar {
+            background: linear-gradient(90deg,#4cd964,#5ac8fa,#007aff,#34aadc,#5856d6,#ff2d55);
+        } 
+         .IVIS__toast.dark.default .IVIS__toast--progressbar {
+            background: #bb86fc;
+        } 
+        .IVIS__toast.success .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-success);
+        }
+
+        .IVIS__toast.error .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-error);
+        }
+
+        .IVIS__toast.warning .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-warning);
+        }
+
+        .IVIS__toast.info .IVIS__toast--progressbar {
+            background-color: var(--IVIS__icon-color-info);
+        }
+    .spinner {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top: 2px solid #868686; /* Default color for light theme */
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.IVIS__toast:not(.dark) .spinner {
+    border-top: 3px solid #868686;
+}
+
+.IVIS__toast.dark .spinner {
+    border-top: 3px solid #c1c1c1;
+}
+
+.spinner::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top: 3px solid #868686; /* Default color for light theme */
+    animation: spin 1s linear infinite reverse;
+}
+
+.IVIS__toast.dark .spinner::before {
+    border-top: 3px solid #c1c1c1;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
