@@ -80,6 +80,7 @@ class ForgotPasswordController extends Controller
                     ], 200)->cookie('authToken', $authToken, 60*5); //5 minutes
                     
                 }else{
+                    $user->update(['otp' => null]);
                     return response([
                         'status' => 'error',
                         'message' => 'OTP expired..! please try again',

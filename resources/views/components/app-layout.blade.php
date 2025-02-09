@@ -10,6 +10,7 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/toastr-script.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
 </head>
 
 <body>

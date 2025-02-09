@@ -1,8 +1,8 @@
 <x-app-layout>
     <h3>User Dashboard</h3>
 
-    <p>User Name: <span id="username"></span></p>
-    <p>User Email: <span id="email"></span></p>
+    <p>User Name: <span id="username">{{$user->username}}</span></p>
+    <p>User Email: <span id="email">{{$user->email}}</span></p>
 
     <div>
         <button onclick="logout()">Logout</button>

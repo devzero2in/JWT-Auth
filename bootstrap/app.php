@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckRoleMiddleware;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TokenVerifyMiddleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'guest' => RedirectIfAuthenticated::class,
             'TokenVerifyMiddleware' => TokenVerifyMiddleware::class,
             'role' => CheckRoleMiddleware::class,
+            'authData' => AuthMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -1,10 +1,10 @@
-<x-app-layout>
+<x-admin-layout>
     <h3>Admin Dashboard</h3>
 
     <div>
         <button onclick="logout()">Logout</button>
     </div>
-</x-app-layout>
+</x-admin-layout>
 
 <script>
     $(document).ready(function() {
