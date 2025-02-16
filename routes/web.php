@@ -22,6 +22,10 @@ Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOTP']);
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->middleware('TokenVerifyMiddleware');
 Route::put('/update-profile', [ProfileController::class, 'userProfileUpadate'])->middleware('TokenVerifyMiddleware');
 Route::put('/update-password', [ProfileController::class, 'userChangePassword'])->middleware('TokenVerifyMiddleware');
+Route::post('/upload-avatar', [ProfileController::class, 'uploadAvatar'])->middleware('TokenVerifyMiddleware')->name('avatar.upload');
+Route::get('/admin/all-users', [AdminController::class, 'allUsers'])->middleware('TokenVerifyMiddleware','role:admin');
+Route::post('/admin/add-user', [AdminController::class, 'addUser'])->middleware('TokenVerifyMiddleware','role:admin');
+Route::post('/admin/edit-permission/{id}', [AdminController::class, 'editPermission'])->middleware('TokenVerifyMiddleware','role:admin');
 
 
 //web routes
@@ -49,4 +53,6 @@ Route::middleware('TokenVerifyMiddleware')->group(function () {
     // Role = Admin routes
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('role:admin');
     Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin.profile')->middleware('role:admin');
+    Route::get('/admin/users', [AdminController::class, 'allUsersPage'])->name('admin.users')->middleware('role:admin');
+    
 });

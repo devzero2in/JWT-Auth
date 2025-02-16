@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -62,6 +63,45 @@ class ProfileController extends Controller
                 'status' => 'success',
                 'message' => 'Password updated successfully..!',
             ], 200);
+        }
+    }
+
+    public function uploadAvatar(Request $request)
+    {
+        $userId = $request->header('id');
+        $user = User::find($userId);
+        $userDetail = $user->userDetail;
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found..!',
+            ], 404);
+        } else {
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            if ($request->hasFile('avatar')) {
+                // Delete the old avatar file
+                if ($userDetail->avatar) {
+                    Storage::disk('public')->delete($userDetail->avatar);
+                }
+
+                $path = $request->file('avatar')->store('images/avatars', 'public');
+                $userDetail->update(['avatar' => $path]);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Avatar updated successfully..!',
+                    'avatar' => asset(Storage::url($path))
+                ], 200);
+            }else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Avatar not found..!',
+                ]);
+            }
         }
     }
 }

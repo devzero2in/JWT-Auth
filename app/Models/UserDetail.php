@@ -14,6 +14,7 @@ class UserDetail extends Model
         'alt_contact',
         'emergency_contact',
         'address',
+        'avatar',
     ];
 
     public function user()

@@ -12,9 +12,10 @@
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
                             <div class="relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full">
-                                <svg class="absolute w-10 h-10 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <!-- <svg class="absolute w-10 h-10 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                                </svg>
+                                </svg> -->
+                                <img class="user-avatar w-8 h-8 rounded-full" alt="user photo">
                             </div>
                         </button>
                     </div>
@@ -55,17 +56,26 @@
 </nav>
 
 <script>
-    $(document).ready(async function() {
+    
+    getUserData();
+    async function getUserData() {
        const res = await axios.get('/user-details');
        if(res.status === 200 && res.data['status'] === 'success'){
             $('#nameData').text(res.data['userDetail']['first_name']);
             $('#lastNameData').text(res.data['userDetail']['last_name']);
             $('#emailData').text(res.data['user']['email']);
+
+            // if userDetail['avatar'] is exists then show image
+            if (res.data['userDetail']['avatar']) {
+                $('.user-avatar').attr('src', "{{ asset('storage/') }}/" + res.data['userDetail']['avatar']);
+            }else{
+                $('.user-avatar').attr('src', "{{ asset('images/default-user.png') }}");
+            }
        }
        else{
         toastr.error('Data Not Found');
        }
-    });
+    }
 
     async function handleLogout() {
         const res = await axios.post('/logout');

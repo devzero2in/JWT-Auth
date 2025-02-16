@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('alt_contact', 20)->nullable();
             $table->string('emergency_contact', 20)->nullable();
             $table->string('address', 255)->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }
